@@ -1,0 +1,28 @@
+Django aplikace umoznujici autentizaci pres http://nyx.cz
+
+USAGE
+=====
+   
+settings:
+
+AUTHENTICATION_BACKENDS = (
+    ...
+    'nyxauth.auth.NyxAuthBackend',
+    ...
+)
+
+NYX_AUTH_PHRASE = 'secret phrase'
+
+NYX_AUTH_PLUGIN_URL = 'http://www.nyx.cz/index.php?l=plugexec;id=...'
+
+
+urls:
+
+from nyxauth import NyxAuth
+
+(r'^nyxauth/', include(NyxAuth().urls(), namespace='nyxauth')),
+
+
+template:
+
+<a href="{% url nyxauth:dispatch %}">Login pres nyx</a>
