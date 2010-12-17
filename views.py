@@ -22,11 +22,9 @@ class NyxAuth(object):
 
         return HttpResponseRedirect(settings.NYX_AUTH_PLUGIN_URL)
 
-    def authenticate(self, request, phrase=settings.NYX_AUTH_PHRASE):
-
+    def authenticate(self, request):
         if 'user' not in request.GET or 'auth' not in request.GET:
-            #TODO: better message
-            messages.error(request, _('There was an error during authentication.'))
+            messages.error(request, _('An error occured during authentication.'))
             return HttpResponseRedirect('/')
 
         user = authenticate(username=request.GET['user'],

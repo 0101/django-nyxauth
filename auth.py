@@ -6,6 +6,9 @@ from django.contrib.auth.models import User
 
 class NyxAuthBackend(object):
 
+    supports_anonymous_user = False
+    supports_object_permissions = False
+
     def authenticate(self, username='', auth=''):
         auth_string = md5(username + settings.NYX_AUTH_PHRASE).hexdigest()
 
