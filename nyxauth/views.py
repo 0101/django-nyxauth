@@ -37,11 +37,12 @@ class NyxAuth(object):
         return self.post_auth(request, user)
 
     def post_auth(self, request, user):
+        next = self.get_next(request)
         login(request, user)
-        return HttpResponseRedirect(self.get_next(request))
+        return HttpResponseRedirect(next)
 
     def get_next(self, request):
-        return request.session.get('next', '/')
+        return request.session.get(NEXT_KEY, '/')
 
     def urls(self):
         return patterns('',
