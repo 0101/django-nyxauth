@@ -15,7 +15,7 @@ class NyxAuth(object):
     def dispatch(self, request):
         next = request.GET.get('next')
         if next:
-            request.session[NEXT_KEY] = request.GET['next']
+            request.session[NEXT_KEY] = next
 
         if request.user.is_authenticated():
             return HttpResponseRedirect(next or '/')
